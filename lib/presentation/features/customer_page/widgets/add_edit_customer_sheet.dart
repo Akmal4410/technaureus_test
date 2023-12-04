@@ -75,11 +75,19 @@ class _AddEditCustomerSheetState extends State<AddEditCustomerSheet> {
               BlocProvider.of<CustomerBloc>(context).add(
                 const CustomerEvent.viewAllCustomers(),
               );
-              return Utils.showSnakbar(
-                title: "Customer Added Successfully",
-                context: context,
-                color: Colors.green,
-              ).then((value) => Navigator.pop(context));
+              if (widget.customer == null) {
+                return Utils.showSnakbar(
+                  title: "Customer Added Successfully",
+                  context: context,
+                  color: Colors.green,
+                ).then((value) => Navigator.pop(context));
+              } else {
+                return Utils.showSnakbar(
+                  title: "Customer Edited Successfully",
+                  context: context,
+                  color: Colors.green,
+                ).then((value) => Navigator.pop(context));
+              }
             },
           ),
         );
